@@ -64,7 +64,7 @@ class Expositions
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\anonymes", mappedBy="exposition")
+     * @ORM\OneToMany(targetEntity="App\Entity\Anonymes", mappedBy="exposition")
      */
     private $anonyme;
 

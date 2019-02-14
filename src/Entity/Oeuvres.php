@@ -59,7 +59,7 @@ class Oeuvres
     private $artiste;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\expositions", inversedBy="oeuvre")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Expositions", inversedBy="oeuvre")
      */
     private $exposition;
 
