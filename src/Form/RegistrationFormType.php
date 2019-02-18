@@ -20,7 +20,7 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('plainPassword', PasswordType::class, [
+            ->add('Password', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -36,7 +36,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('passwordConfirmation', PasswordType::class, [
+            ->add('Confirmation', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -80,7 +80,8 @@ class RegistrationFormType extends AbstractType
                     'Admin' => 'ROLE_ADMIN',
                     'Collaborateur' => 'ROLE_USER'
                 ],
-                'mapped' => false
+                'mapped' => false,
+                'multiple' => true
             ])
         ;
     }

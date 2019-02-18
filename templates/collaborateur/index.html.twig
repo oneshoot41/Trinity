@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collaborateurs{% endblock %}
+
+{% block body %}
+    {% include 'partials/_navbarGestion.html.twig' %}
+    <div class="container pt-5">
+
+        <h1 class="script text-center pb-5">Collaborateurs</h1>
+        <table class="mx-auto table table-bordered ">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Service</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th colspan="2"><a href="{{path('new_collaborateur')}}" class="btn btn-info">Nouveau Collaborateur</a></th>
+                {% endif %}
+                </tr>
+            </thead>
+            {% for collaborateur in collaborateurs %}
+            <tr class="text-center">
+                <td>{{ collaborateur.nom }}</td>
+                <td>{{ collaborateur.prenom }}</td>
+                <td>{{ collaborateur.email }}</td>
+                <td>{{ collaborateur.tel }}</td>
+                <td>{{ collaborateur.service }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td><a href="{{ path('collaborateur_edit', {'id': collaborateur.id}) }}" class="btn btn-warning">Modifier</a></td>
+                    <td>{{ include('collaborateur/_delete_form.html.twig') }}</td>
+                {% endif %}
+            </tr>
+                
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

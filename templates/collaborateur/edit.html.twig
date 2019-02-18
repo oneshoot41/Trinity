@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
-{% block title %}Register{% endblock %}
+{% block title %}Edit{% endblock %}
 
 {% block body %}
 {% include 'partials/_navbarGestion.html.twig' %}
-    <h1>Register</h1>
+    <h1>Edit</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
@@ -12,10 +12,8 @@
         {{ form_row(registrationForm.tel) }}
         {{ form_row(registrationForm.service) }}
         {{ form_row(registrationForm.roles) }}
-        {{ form_row(registrationForm.Password) }}
-        {{ form_row(registrationForm.Confirmation) }}
-        <button class="btn">Enregistrer</button>
+        <button class="btn">Modifier</button>
     {{ form_end(registrationForm) }}
 
-    <a class="btn btn-dark" href="{{ path('collaborateur') }}">Retour</a>
+    <a class="btn btn-dark" href="{{ path('artistes_index') }}">Retour</a>
 {% endblock %}
