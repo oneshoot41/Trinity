@@ -14,9 +14,7 @@
                     <th scope="col">Prénom</th>
                     <th scope="col">Biographie fr</th>
                     <th scope="col">Biographie en</th>
-                {% if is_granted('ROLE_ADMIN') %}
                     <th colspan="2"><a href="{{path('artistes_new')}}" class="btn btn-info">Ajouter un Artiste</a></th>
-                {% endif %}
                 </tr>
             </thead>
             {% for artiste in artistes %}
@@ -25,11 +23,8 @@
                 <td>{{ artiste.prenom }}</td>
                 <td>{{ artiste.biographieEn }}</td>
                 <td>{{ artiste.biographieFr}}</td>
-                {% if is_granted('ROLE_ADMIN') %}
                     <td><a href="{{ path('artistes_edit', {'id': artiste.id}) }}" class="btn btn-warning">Modifier</a></td>
                     <td>{{ include('artistes/_delete_form.html.twig') }}</td>
-                {% endif %}
-            </tr>
-                
+            </tr>   
             {% endfor %}
 {% endblock %}

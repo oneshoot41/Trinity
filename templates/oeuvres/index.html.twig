@@ -6,27 +6,65 @@
 {% include 'partials/_navbarGestion.html.twig' %}
 <div class="container pt-5">
     <h1 class="text-center script pb-5">Oeuvres</h1>
+    <div class="text-center">
+        <a class="btn btn-info mb-3" href="{{ path('oeuvres_new') }}">Ajouter une Oeuvre</a>
+    </div>
     <div class="row">
+            
         {% for oeuvre in oeuvres %}
-            <div class="col-md-4 col-sm-12 p-3">
-                <div class="card">
-                    <h1 class="card-title script text-center text-secondary">{{ oeuvre.titre }}</h1>
-                    <img src="{{asset('uploads/media/')}}{{oeuvre.path}}" alt="Oeuvre" class="card-img-top">
-                    <div class="text-center mt-2">
-                        <p class="mb-0">Type : {{ oeuvre.type }} || Livré : {{ oeuvre.livre ? 'Oui' : 'Non' }} <br> {{ oeuvre.descriptionFr }}</p>
-                        <div class="d-flex justify-content-center">
-                        <a class="btn btn-warning m-2" href="{{ path('oeuvres_edit', {'id': oeuvre.id}) }}">Modifier</a>
-                        <a href="{{ path('oeuvres_delete', {'id': oeuvre.id}) }}">{{ include('oeuvres/_delete_form.html.twig') }}</a>
+            {% if oeuvre.type == 'Tableau' %}
+                <div class="col-md-4 col-sm-12 p-3 d-flex align-items-stretch">
+                    <div class="card">
+                        <h1 class="card-title script text-center text-secondary">{{ oeuvre.titre }}</h1>
+                        <img src="{{asset('uploads/media/')}}{{oeuvre.path}}" alt="Oeuvre" class="card-img-top">
+                        <div class="text-center mt-2">
+                            <p class="mb-0 mt-1">Type : {{ oeuvre.type }} || Livré : {{ oeuvre.livre ? 'Oui' : 'Non' }} <br> {{ oeuvre.descriptionFr|slice(0, 50) }}</p>
+                            <div class="d-flex justify-content-center mt-4">
+                            <a class="btn btn-warning m-2" href="{{ path('oeuvres_edit', {'id': oeuvre.id}) }}">Modifier</a>
+                            <a href="{{ path('oeuvres_delete', {'id': oeuvre.id}) }}">{{ include('oeuvres/_delete_form.html.twig') }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% elseif oeuvre.type == 'Musique' %}
+                <div class="col-md-4 col-sm-12 p-3 d-flex align-items-stretch">
+                    <div class="card">
+                        <h1 class="card-title script text-center text-secondary">{{ oeuvre.titre }}</h1>
+                        <img src="{{asset('img/music.png')}}" alt="Musique" class="card-img">
+                        <div class="card-body">
+                            <div>
+                                <audio src="{{asset('uploads/media/')}}{{oeuvre.path}}" alt="Oeuvre" controls>
+                            </div>
+                            <div class="text-center">
+                                <p class="mb-0">Type : {{ oeuvre.type }} || Livré : {{ oeuvre.livre ? 'Oui' : 'Non' }} <br> {{ oeuvre.descriptionFr|slice(0, 50) }}</p>
+                                <div class="d-flex justify-content-center">
+                                <a class="btn btn-warning m-2" href="{{ path('oeuvres_edit', {'id': oeuvre.id}) }}">Modifier</a>
+                                <a href="{{ path('oeuvres_delete', {'id': oeuvre.id}) }}">{{ include('oeuvres/_delete_form.html.twig') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% elseif oeuvre.type == 'Vidéo' %}
+                <div class="col-md-4 col-sm-12 p-3 d-flex align-items-stretch">
+                    <div class="card">
+                        <h1 class="card-title script text-center text-secondary">{{ oeuvre.titre }}</h1>
+                        <video controls src="{{asset('uploads/media/')}}{{oeuvre.path}}" alt="Oeuvre" class="card-img-top"></video>
+                        <div class="text-center mt-2">
+                            <p class="mb-0">Type : {{ oeuvre.type }} || Livré : {{ oeuvre.livre ? 'Oui' : 'Non' }} <br> {{ oeuvre.descriptionFr|slice(0, 50) }}</p>
+                            <div class="d-flex justify-content-center">
+                            <a class="btn btn-warning m-2" href="{{ path('oeuvres_edit', {'id': oeuvre.id}) }}">Modifier</a>
+                            <a href="{{ path('oeuvres_delete', {'id': oeuvre.id}) }}">{{ include('oeuvres/_delete_form.html.twig') }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Aucune Oeuvre Enregistrée</td>
             </tr>
         {% endfor %}
     </div>
-    <a href="{{ path('oeuvres_new') }}">Create new</a>
 </div>
 {% endblock %}

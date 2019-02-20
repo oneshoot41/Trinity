@@ -81,7 +81,7 @@ class RegistrationFormType extends AbstractType
                     'Collaborateur' => 'ROLE_USER'
                 ],
                 'mapped' => false,
-                'multiple' => true
+                'multiple' => false
             ])
         ;
     }

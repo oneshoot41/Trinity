@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Oeuvres;
 use App\Form\OeuvresType;
+use App\Form\OeuvresEditType;
 use App\Repository\OeuvresRepository;
 use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -66,7 +67,7 @@ class OeuvresController extends AbstractController
      */
     public function edit(Request $request, Oeuvres $oeuvre): Response
     {
-        $form = $this->createForm(OeuvresType::class, $oeuvre);
+        $form = $this->createForm(OeuvresEditType::class, $oeuvre);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

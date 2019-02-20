@@ -55,7 +55,8 @@ class UsersType extends AbstractType
                 'Collaborateur' => 'ROLE_USER'
             ],
             'mapped' => true,
-            'multiple' => true
+            'multiple' => true,
+            'expanded' => true
         ])
     ;
     }
