@@ -3,54 +3,59 @@
 {% block title %}Expositions{% endblock %}
 
 {% block body %}
-    <h1>Expositions</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ exposition.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ exposition.nom }}</td>
-            </tr>
-            <tr>
-                <th>Date_debut</th>
-                <td>{{ exposition.dateDebut ? exposition.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date_fin</th>
-                <td>{{ exposition.dateFin ? exposition.dateFin|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Nb_vues</th>
-                <td>{{ exposition.nbVues }}</td>
-            </tr>
-            <tr>
-                <th>Description_fr</th>
-                <td>{{ exposition.descriptionFr }}</td>
-            </tr>
-            <tr>
-                <th>Description_en</th>
-                <td>{{ exposition.descriptionEn }}</td>
-            </tr>
-            <tr>
-                <th>Ordre</th>
-                <td>{{ exposition.ordre }}</td>
-            </tr>
-            <tr>
-                <th>Oeuvre</th>
-            {% for o in exposition.oeuvres %}
-                <td>{{ o.titre }}</td>
-            {% endfor %}
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('expositions_index') }}">back to list</a>
-
-    <a href="{{ path('expositions_edit', {'id': exposition.id}) }}">edit</a>
-
-    {{ include('expositions/_delete_form.html.twig') }}
+{% include 'partials/_navbarGestion.html.twig' %}
+<div class="container pt-5">
+    <h1 class="text-center script pb-5">{{ exposition.nom }}</h1>
+    <div class="row">
+        <div class="col-md-6 text-center py-5">
+            <h3 class="script text-warning">Description Français</h3>
+            <p class="pt-5">{{ exposition.descriptionFr }}</p>
+        </div>
+        <div class="col-md-6 text-center py-5">
+            <h3 class="script text-warning">Description Anglais</h3>
+            <p class="pt-5">{{ exposition.descriptionEn }}</p>
+        </div>
+    </div>
+    <div class="row"> 
+        <div class="col-md-12 py-5 text-center">
+            <h2 class="script text-info ">Oeuvres dans l'exposition :</h2>
+        </div>
+    </div>
+    <div class="row">   
+        {% for o in exposition.oeuvres %}
+            {% if o.type == 'Tableau' %}
+                <div class="col-md-3 col-sm-12 p-3 d-flex align-items-stretch">
+                    <div class="card">
+                        <h1 class="card-title script text-center text-secondary">{{ o.titre }}</h1>
+                        <img src="{{asset('uploads/media/')}}{{o.path}}" alt="oeuvre" class="card-img-top">
+                    </div>
+                </div>
+            {% elseif o.type == 'Musique' %}
+                <div class="col-md-3 col-sm-12 p-3 d-flex align-items-stretch">
+                    <div class="card">
+                        <h1 class="card-title script text-center text-secondary">{{ o.titre }}</h1>
+                        <img src="{{asset('img/music.png')}}" alt="Musique" class="card-img">
+                        <div class="card-body">
+                            <div>
+                                <audio src="{{asset('uploads/media/')}}{{o.path}}" alt="oeuvre" controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% elseif o.type == 'Vidéo' %}
+                <div class="col-md-3 col-sm-12 p-3 d-flex align-items-stretch">
+                    <div class="card">
+                        <h1 class="card-title script text-center text-secondary">{{ o.titre }}</h1>
+                        <video controls src="{{asset('uploads/media/')}}{{o.path}}" alt="oeuvre" class="card-img-top"></video>
+                    </div>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="text-center">
+                <p class="script">Aucune oeuvre dans l'exposition</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

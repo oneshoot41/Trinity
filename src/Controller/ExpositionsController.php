@@ -35,6 +35,8 @@ class ExpositionsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $exposition->setUser($this->getUser());
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($exposition);
             $entityManager->flush();
