@@ -101,7 +101,9 @@ class ExpositionsController extends AbstractController
      */
     public function generate(Expositions $exposition): Response
     {
-        
+
+        dump($exposition);
+        die();
         return $this->render('expositions/generate.html.twig', [
             'exposition' => $exposition,
         ]);

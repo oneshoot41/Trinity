@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\File\File;
 class OeuvresController extends AbstractController
 {
     const LIEN =  "http://127.0.0.1:8000/oeuvres/";
+    const EXTENSION = '.png';
 
     /**
      * @Route("/", name="oeuvres_index", methods={"GET"})
@@ -45,18 +46,19 @@ class OeuvresController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
-           
-
             $oeuvre->setPath($fileUploader->upload($form['path']->getData()));
 
             $entityManager = $this->getDoctrine()->getManager();
+           
             $entityManager->persist($oeuvre);
+          
+            $entityManager->flush();
 
+         
             $qrCode = new QrCode(self::LIEN . $oeuvre->getId());
             // Save it to a file
-            $qrCode->writeFile(__DIR__.'/public/qr_codes/' . $oeuvre->getTitle() . '.png');
-            
-            $entityManager->flush();
+            $qrCode->writeFile($this->getParameter('qr_codes_directory') . $oeuvre->getTitre() . self::EXTENSION);
+        
 
             return $this->redirectToRoute('oeuvres_index');
         }

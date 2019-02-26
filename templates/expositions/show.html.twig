@@ -44,6 +44,8 @@
 
     <a href="{{ path('expositions_index') }}">back to list</a>
 
+    <a href="{{ path('expositions_generate', {'id': exposition.id}) }}">Générer Qr Codes</a>
+
     <a href="{{ path('expositions_edit', {'id': exposition.id}) }}">edit</a>
 
     {{ include('expositions/_delete_form.html.twig') }}
