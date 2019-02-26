@@ -39,6 +39,12 @@
                 <th>Ordre</th>
                 <td>{{ exposition.ordre }}</td>
             </tr>
+            <tr>
+                <th>Oeuvre</th>
+            {% for o in exposition.oeuvres %}
+                <td>{{ o.titre }}</td>
+            {% endfor %}
+            </tr>
         </tbody>
     </table>
 

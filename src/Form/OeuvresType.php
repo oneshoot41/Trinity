@@ -34,7 +34,6 @@ class OeuvresType extends AbstractType
             ->add('artiste', EntityType::class, [
                 'class' => Artistes::class,
                 'choice_label' => 'nom',
-                'data' => 'nom',
                 'multiple' => false,
                 'expanded' =>  false
             ])

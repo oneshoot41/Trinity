@@ -54,11 +54,6 @@ class Expositions
     private $ordre;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Oeuvres", mappedBy="exposition")
-     */
-    private $oeuvre;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="exposition")
      */
     private $user;
@@ -68,10 +63,15 @@ class Expositions
      */
     private $anonyme;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Oeuvres", inversedBy="exposition")
+     */
+    private $oeuvres;
+
     public function __construct()
     {
-        $this->oeuvre = new ArrayCollection();
         $this->anonyme = new ArrayCollection();
+        $this->oeuvres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,34 +163,6 @@ class Expositions
         return $this;
     }
 
-    /**
-     * @return Collection|Oeuvres[]
-     */
-    public function getOeuvre(): Collection
-    {
-        return $this->oeuvre;
-    }
-
-    public function addOeuvre(Oeuvres $oeuvre): self
-    {
-        if (!$this->oeuvre->contains($oeuvre)) {
-            $this->oeuvre[] = $oeuvre;
-            $oeuvre->addExposition($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOeuvre(Oeuvres $oeuvre): self
-    {
-        if ($this->oeuvre->contains($oeuvre)) {
-            $this->oeuvre->removeElement($oeuvre);
-            $oeuvre->removeExposition($this);
-        }
-
-        return $this;
-    }
-
     public function getUser(): ?Users
     {
         return $this->user;
@@ -229,6 +201,32 @@ class Expositions
             if ($anonyme->getExposition() === $this) {
                 $anonyme->setExposition(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|oeuvres[]
+     */
+    public function getOeuvres(): Collection
+    {
+        return $this->oeuvres;
+    }
+
+    public function addOeuvre(oeuvres $oeuvre): self
+    {
+        if (!$this->oeuvres->contains($oeuvre)) {
+            $this->oeuvres[] = $oeuvre;
+        }
+
+        return $this;
+    }
+
+    public function removeOeuvre(oeuvres $oeuvre): self
+    {
+        if ($this->oeuvres->contains($oeuvre)) {
+            $this->oeuvres->removeElement($oeuvre);
         }
 
         return $this;

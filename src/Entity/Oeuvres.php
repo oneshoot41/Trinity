@@ -59,7 +59,7 @@ class Oeuvres
     private $artiste;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Expositions", inversedBy="oeuvre")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Expositions", mappedBy="oeuvres")
      */
     private $exposition;
 
@@ -67,6 +67,7 @@ class Oeuvres
     {
         $this->exposition = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -170,26 +171,28 @@ class Oeuvres
     }
 
     /**
-     * @return Collection|expositions[]
+     * @return Collection|Expositions[]
      */
     public function getExposition(): Collection
     {
         return $this->exposition;
     }
 
-    public function addExposition(expositions $exposition): self
+    public function addExposition(Expositions $exposition): self
     {
         if (!$this->exposition->contains($exposition)) {
             $this->exposition[] = $exposition;
+            $exposition->addOeuvre($this);
         }
 
         return $this;
     }
 
-    public function removeExposition(expositions $exposition): self
+    public function removeExposition(Expositions $exposition): self
     {
         if ($this->exposition->contains($exposition)) {
             $this->exposition->removeElement($exposition);
+            $exposition->removeOeuvre($this);
         }
 
         return $this;
