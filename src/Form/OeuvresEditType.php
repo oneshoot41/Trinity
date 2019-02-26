@@ -26,9 +26,13 @@ class OeuvresEditType extends AbstractType
             ->add('artiste', EntityType::class, [
                 'class' => Artistes::class,
                 'choice_label' => 'nom',
-                'data' => 'nom',
                 'multiple' => false,
                 'expanded' =>  false
+            ])
+            ->add('exposition', EntityType::class, [
+                'class' => Expositions::class,
+                'choice_label' => 'nom',
+                'multiple' => true
             ]);
     }
 

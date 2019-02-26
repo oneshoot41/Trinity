@@ -6,7 +6,6 @@ use App\Entity\Oeuvres;
 use App\Entity\Expositions;
 use App\Entity\Artistes;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,11 +24,11 @@ class ExpositionsType extends AbstractType
             ->add('nb_vues')
             ->add('description_fr')
             ->add('description_en')
-            ->add('oeuvre', EntityType::class, [
+            ->add('oeuvres', EntityType::class, [
                 'class' => Oeuvres::class,
                 'choice_label' => 'titre',
                 'multiple' => true,
-                'mapped' => true
+                'expanded' => true
             ])
             ->add('ordre')
             // ->add('user')

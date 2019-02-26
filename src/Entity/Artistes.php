@@ -39,7 +39,7 @@ class Artistes
     private $biographie_en;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\oeuvres", mappedBy="artistes")
+     * @ORM\OneToMany(targetEntity="App\Entity\oeuvres", mappedBy="artiste")
      */
     private $oeuvre;
 
