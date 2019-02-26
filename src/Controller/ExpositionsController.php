@@ -97,7 +97,7 @@ class ExpositionsController extends AbstractController
     }
 
      /**
-     * @Route("/generate", name="expositions_generate", methods={"GET"})
+     * @Route("/generate/{id}", name="expositions_generate", methods={"GET"})
      */
     public function generate(Expositions $exposition): Response
     {

@@ -85,12 +85,12 @@ class Oeuvres
         return $this;
     }
 
-    public function getPath(): ?string
+    public function getPath()
     {
         return $this->path;
     }
 
-    public function setPath(string $path): self
+    public function setPath($path): self
     {
         $this->path = $path;
 
@@ -157,12 +157,12 @@ class Oeuvres
         return $this;
     }
 
-    public function getArtiste(): ?Artiste
+    public function getArtiste()
     {
         return $this->artiste;
     }
 
-    public function setArtiste(?Artiste $artiste): self
+    public function setArtiste($artiste): self
     {
         $this->artiste = $artiste;
 

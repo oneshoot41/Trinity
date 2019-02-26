@@ -6,7 +6,7 @@
     {% include 'partials/_navbarGestion.html.twig' %}
     <div class="container pt-5">
 
-        <h1 class="script text-center">Artistes</h1>
+        <h1 class="script text-center text-warning">Artistes</h1>
         <table class="mx-auto table table-bordered ">
             <thead>
                 <tr class="text-center">
@@ -14,10 +14,7 @@
                     <th scope="col">Prénom</th>
                     <th scope="col">Biographie fr</th>
                     <th scope="col">Biographie en</th>
-                    <th scope="col">Service</th>
-                {% if is_granted('ROLE_ADMIN') %}
                     <th colspan="2"><a href="{{path('artistes_new')}}" class="btn btn-info">Ajouter un Artiste</a></th>
-                {% endif %}
                 </tr>
             </thead>
             {% for artiste in artistes %}
@@ -26,11 +23,8 @@
                 <td>{{ artiste.prenom }}</td>
                 <td>{{ artiste.biographieEn }}</td>
                 <td>{{ artiste.biographieFr}}</td>
-                {% if is_granted('ROLE_ADMIN') %}
                     <td><a href="{{ path('artistes_edit', {'id': artiste.id}) }}" class="btn btn-warning">Modifier</a></td>
                     <td>{{ include('artistes/_delete_form.html.twig') }}</td>
-                {% endif %}
-            </tr>
-                
+            </tr>   
             {% endfor %}
 {% endblock %}

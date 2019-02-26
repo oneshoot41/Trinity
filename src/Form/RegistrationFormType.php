@@ -80,8 +80,8 @@ class RegistrationFormType extends AbstractType
                     'Admin' => 'ROLE_ADMIN',
                     'Collaborateur' => 'ROLE_USER'
                 ],
-                'mapped' => false,
-                'multiple' => true
+                'multiple' => true,
+                'expanded' => true
             ])
         ;
     }

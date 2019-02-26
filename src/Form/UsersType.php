@@ -21,17 +21,11 @@ class UsersType extends AbstractType
         $builder
         ->add('email')
 
-        ->add('nom', TextType::class, [
-            'mapped' => true
-        ])
+        ->add('nom', TextType::class)
 
-        ->add('prenom', TextType::class, [
-            'mapped' => true
-        ])
+        ->add('prenom', TextType::class)
 
-        ->add('tel', TextType::class, [
-            'mapped' => true
-        ])
+        ->add('tel', TextType::class)
 
         ->add('service', ChoiceType::class, [
             'choices'  => [
@@ -54,8 +48,8 @@ class UsersType extends AbstractType
                 'Admin' => 'ROLE_ADMIN',
                 'Collaborateur' => 'ROLE_USER'
             ],
-            'mapped' => true,
-            'multiple' => true
+            'multiple' => true,
+            'expanded' => true
         ])
     ;
     }

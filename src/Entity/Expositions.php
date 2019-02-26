@@ -157,7 +157,7 @@ class Expositions
     }
 
     public function setOrdre(?string $ordre): self
-    {
+    { 
         $this->ordre = $ordre;
 
         return $this;

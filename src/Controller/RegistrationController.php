@@ -28,9 +28,9 @@ class RegistrationController extends AbstractController
                     $form->get('Password')->getData()
                 )
             );
-            $user->setRoles([
+            $user->setRoles(
                 $form->get('roles')->getData()
-            ]);
+            );
             $user->setNom(
                 $form->get('nom')->getData()
             );

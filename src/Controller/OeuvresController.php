@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Oeuvres;
 use App\Form\OeuvresType;
+use App\Form\OeuvresEditType;
 use App\Repository\OeuvresRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use Endroid\QrCode\QrCode;
 
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @Route("/oeuvres")
@@ -33,7 +36,7 @@ class OeuvresController extends AbstractController
     /**
      * @Route("/new", name="oeuvres_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $oeuvre = new Oeuvres();
         $form = $this->createForm(OeuvresType::class, $oeuvre);
@@ -42,12 +45,18 @@ class OeuvresController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
+           
+
+            $oeuvre->setPath($fileUploader->upload($form['path']->getData()));
+
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($oeuvre);
-            $entityManager->flush();
 
             $qrCode = new QrCode(self::LIEN . $oeuvre->getId());
             // Save it to a file
             $qrCode->writeFile(__DIR__.'/public/qr_codes/' . $oeuvre->getTitle() . '.png');
+            
+            $entityManager->flush();
 
             return $this->redirectToRoute('oeuvres_index');
         }
@@ -71,12 +80,15 @@ class OeuvresController extends AbstractController
     /**
      * @Route("/{id}/edit", name="oeuvres_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Oeuvres $oeuvre): Response
+    public function edit(Request $request, Oeuvres $oeuvre, FileUploader $fileUploader): Response
     {
-        $form = $this->createForm(OeuvresType::class, $oeuvre);
+
+
+        $form = $this->createForm(OeuvresEditType::class, $oeuvre);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('oeuvres_index', [
