@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Oeuvres{% endblock %}
+
+{% block body %}
+    <h1>Oeuvres</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ oeuvre.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ oeuvre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ oeuvre.path }}</td>
+            </tr>
+            <tr>
+                <th>Livre</th>
+                <td>{{ oeuvre.livre ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Emplacement</th>
+                <td>{{ oeuvre.emplacement }}</td>
+            </tr>
+            <tr>
+                <th>Description_fr</th>
+                <td>{{ oeuvre.descriptionFr }}</td>
+            </tr>
+            <tr>
+                <th>Description_en</th>
+                <td>{{ oeuvre.descriptionEn }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ oeuvre.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('oeuvres_index') }}">back to list</a>
+
+    <a href="{{ path('oeuvres_edit', {'id': oeuvre.id}) }}">edit</a>
+
+    {{ include('oeuvres/_delete_form.html.twig') }}
+{% endblock %}

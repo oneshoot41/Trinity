@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Expositions qr codes
+
+{% block body %}
+
+    {% for oeuvre in exposition.oeuvre %}
+    <div>
+        <img src="{{ asset('qr_codes/' ~ oeuvre.title) }}"/>
+    </div>
+    {% endfor %}
+
+{% endblock %}
