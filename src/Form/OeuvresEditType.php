@@ -23,29 +23,13 @@ class OeuvresEditType extends AbstractType
             ->add('emplacement')
             ->add('description_fr')
             ->add('description_en')
-            ->add('type', ChoiceType::class, [
-                'choices'  => [
-                    'Tableau' => 'Tableau',
-                    'Musique' => 'Musique',
-                    'Vidéo' => 'Vidéo'
-                ]]
-            )
             ->add('artiste', EntityType::class, [
                 'class' => Artistes::class,
                 'choice_label' => 'nom',
                 'data' => 'nom',
                 'multiple' => false,
                 'expanded' =>  false
-            ])
-            ->add('exposition', EntityType::class, [
-                'class' => Expositions::class,
-                'choice_label' => 'nom',
-                'multiple' => false,
-                'expanded' =>  false,
-                'mapped' => false
-            ]
-            )
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

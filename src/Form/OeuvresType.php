@@ -38,15 +38,7 @@ class OeuvresType extends AbstractType
                 'multiple' => false,
                 'expanded' =>  false
             ])
-            ->add('exposition', EntityType::class, [
-                'class' => Expositions::class,
-                'choice_label' => 'nom',
-                'multiple' => false,
-                'expanded' =>  false,
-                'mapped' => false
-            ]
-            )
-        ;
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
