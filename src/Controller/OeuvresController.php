@@ -13,11 +13,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\File;
 
+use Endroid\QrCode\QrCode;
+
 /**
  * @Route("/oeuvres")
  */
 class OeuvresController extends AbstractController
 {
+
+    const LIEN =  "http://127.0.0.1:8000/oeuvres/";
+    const EXTENSION = '.png';
+
     /**
      * @Route("/", name="oeuvres_index", methods={"GET"})
      */
@@ -38,11 +44,18 @@ class OeuvresController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            
             $oeuvre->setPath($fileUploader->upload($form['path']->getData()));
 
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($oeuvre);
+
             $entityManager->flush();
+
+
+            $qrCode = new QrCode(self::LIEN . $oeuvre->getId());
+            // Save it to a file
+            $qrCode->writeFile($this->getParameter('qr_codes_directory') . $oeuvre->getTitre() . $oeuvre->getId() . self::EXTENSION);
 
             return $this->redirectToRoute('oeuvres_index');
         }
@@ -75,7 +88,7 @@ class OeuvresController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $this->getDoctrine()->getManager()->flush();
+            $this->getDoctrine()->getManager()->flush(); 
 
             return $this->redirectToRoute('oeuvres_index', [
                 'id' => $oeuvre->getId(),

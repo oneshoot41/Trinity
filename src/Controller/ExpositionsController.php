@@ -21,7 +21,7 @@ class ExpositionsController extends AbstractController
     public function index(ExpositionsRepository $expositionsRepository): Response
     {
         return $this->render('expositions/index.html.twig', [
-            'expositions' => $expositionsRepository->findAll(),
+            'expositions' => $expositionsRepository->findBy([],['id' => 'DESC']),
         ]);
     }
 
@@ -69,7 +69,7 @@ class ExpositionsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->getDoctrine()->getManager()->flush(); 
 
             return $this->redirectToRoute('expositions_index', [
                 'id' => $exposition->getId(),
@@ -94,5 +94,15 @@ class ExpositionsController extends AbstractController
         }
 
         return $this->redirectToRoute('expositions_index');
+    }
+    
+    /**
+     * @Route("/generate/{id}", name="expositions_generate", methods={"GET"})
+     */
+    public function generate(Expositions $exposition): Response
+    {
+        return $this->render('expositions/generate.html.twig', [
+            'exposition' => $exposition,
+        ]);
     }
 }

@@ -6,6 +6,8 @@
 parameters:
     locale: 'en'
     media_directory: '%kernel.project_dir%/public/uploads/media'
+    qr_codes_directory: '%kernel.project_dir%/public/qr_codes/'
+    
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -23,6 +25,10 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Controller\OeuvresController:
+        arguments:
+            - '%qr_codes_directory%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
