@@ -8,11 +8,11 @@
  
    {% for oeuvre in exposition.oeuvres %}
         <div>
-            <img src="{{ asset('qr_codes/' ~ oeuvre.titre ~ '.png') }}"/>
+            <img src="{{ asset('qr_codes/' ~ oeuvre.titre ~ oeuvre.id ~ '.png') }}"/>
             
             <p>{{ oeuvre.titre}}  
-                {% if oeuvre.artiste is defined and oeuvre.artiste is not empty %}
-                -  {{ oeuvre.artiste }} 
+                {% if oeuvre.artiste.nom is defined and oeuvre.artiste.nom is not empty %}
+                -  {{ oeuvre.artiste.nom }} 
                 {% endif %}
             <p>
 

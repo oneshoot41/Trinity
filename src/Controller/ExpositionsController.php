@@ -21,7 +21,7 @@ class ExpositionsController extends AbstractController
     public function index(ExpositionsRepository $expositionsRepository): Response
     {
         return $this->render('expositions/index.html.twig', [
-            'expositions' => $expositionsRepository->findAll(),
+            'expositions' => $expositionsRepository->findBy([],['id' => 'DESC']),
         ]);
     }
 
@@ -35,6 +35,8 @@ class ExpositionsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $exposition->setUser($this->getUser());
+            
             $entityManager = $this->getDoctrine()->getManager();
 
             $entityManager->persist($exposition);
@@ -69,7 +71,7 @@ class ExpositionsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->getDoctrine()->getManager()->flush(); 
 
             return $this->redirectToRoute('expositions_index', [
                 'id' => $exposition->getId(),
@@ -95,8 +97,13 @@ class ExpositionsController extends AbstractController
 
         return $this->redirectToRoute('expositions_index');
     }
+<<<<<<< HEAD
 
      /**
+=======
+    
+    /**
+>>>>>>> 5ecc168b236b44f024a566425dd43aa4d7044cb0
      * @Route("/generate/{id}", name="expositions_generate", methods={"GET"})
      */
     public function generate(Expositions $exposition): Response

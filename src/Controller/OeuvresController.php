@@ -16,6 +16,8 @@ use Endroid\QrCode\QrCode;
 
 use Symfony\Component\HttpFoundation\File\File;
 
+use Endroid\QrCode\QrCode;
+
 /**
  * @Route("/oeuvres")
  */
@@ -45,20 +47,17 @@ class OeuvresController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
+            
             $oeuvre->setPath($fileUploader->upload($form['path']->getData()));
 
-            $entityManager = $this->getDoctrine()->getManager();
-           
             $entityManager->persist($oeuvre);
-          
+
             $entityManager->flush();
 
-         
+
             $qrCode = new QrCode(self::LIEN . $oeuvre->getId());
             // Save it to a file
-            $qrCode->writeFile($this->getParameter('qr_codes_directory') . $oeuvre->getTitre() . self::EXTENSION);
-        
+            $qrCode->writeFile($this->getParameter('qr_codes_directory') . $oeuvre->getTitre() . $oeuvre->getId() . self::EXTENSION);
 
             return $this->redirectToRoute('oeuvres_index');
         }
@@ -91,7 +90,7 @@ class OeuvresController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $this->getDoctrine()->getManager()->flush();
+            $this->getDoctrine()->getManager()->flush(); 
 
             return $this->redirectToRoute('oeuvres_index', [
                 'id' => $oeuvre->getId(),

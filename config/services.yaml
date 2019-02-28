@@ -7,7 +7,7 @@ parameters:
     locale: 'en'
     media_directory: '%kernel.project_dir%/public/uploads/media'
     qr_codes_directory: '%kernel.project_dir%/public/qr_codes/'
-
+    
 services:
     # default configuration for services in *this* file
     _defaults:
