@@ -16,8 +16,6 @@ use Endroid\QrCode\QrCode;
 
 use Symfony\Component\HttpFoundation\File\File;
 
-use Endroid\QrCode\QrCode;
-
 /**
  * @Route("/oeuvres")
  */
