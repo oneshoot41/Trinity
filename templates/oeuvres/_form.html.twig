@@ -1,4 +1,10 @@
-{{ form_start(form) }}
+
+<div class="container pt-4 mt-4 mb-4">
+    <h2>Formulaire d'ajout d'Oeuvre</h2>
+    
+    {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    <a href="{{ path('oeuvres_index') }}">Retour vers la liste</a>
+    {{ form_end(form) }}
+</div>

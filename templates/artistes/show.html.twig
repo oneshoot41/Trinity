@@ -1,38 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Artistes{% endblock %}
+{% block title %}Liste des artistes{% endblock %}
 
 {% block body %}
-    <h1>Artistes</h1>
+    <h1>Liste des artistes</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>n°</th>
                 <td>{{ artiste.id }}</td>
             </tr>
             <tr>
-                <th>Nom</th>
+                <th>Nom de l'artiste</th>
                 <td>{{ artiste.nom }}</td>
             </tr>
             <tr>
-                <th>Prenom</th>
+                <th>Prenom de l'artiste</th>
                 <td>{{ artiste.prenom }}</td>
             </tr>
             <tr>
-                <th>Biographie_fr</th>
+                <th>Biographie en français</th>
                 <td>{{ artiste.biographieFr }}</td>
             </tr>
             <tr>
-                <th>Biographie_en</th>
+                <th>Biographie en Anglais</th>
                 <td>{{ artiste.biographieEn }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('artistes_index') }}">back to list</a>
+    <a href="{{ path('artistes_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('artistes_edit', {'id': artiste.id}) }}">edit</a>
+    <a href="{{ path('artistes_edit', {'id': artiste.id}) }}">Modifier l'artiste</a>
 
     {{ include('artistes/_delete_form.html.twig') }}
 {% endblock %}

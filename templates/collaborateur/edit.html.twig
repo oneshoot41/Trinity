@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
-{% block title %}Edit{% endblock %}
+{% block title %}Modifier le collaborateur{% endblock %}
 
 {% block body %}
-{% include 'partials/_navbarGestion.html.twig' %}
-    <h1>Edit</h1>
+    <h1>Modifier le collaborateur</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
@@ -12,7 +11,7 @@
         {{ form_row(registrationForm.tel) }}
         {{ form_row(registrationForm.service) }}
         {{ form_row(registrationForm.roles) }}
-        <button class="btn">Modifier</button>
+        <button class="btn">Modifier le collaborateur</button>
     {{ form_end(registrationForm) }}
 
     <a class="btn btn-dark" href="{{ path('artistes_index') }}">Retour</a>

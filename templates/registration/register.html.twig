@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
-{% block title %}Register{% endblock %}
+{% block title %}S'inscrire{% endblock %}
 
 {% block body %}
-{% include 'partials/_navbarGestion.html.twig' %}
-    <h1>Register</h1>
+<div class="container pt-4 mt-4 mb-4">
+    <h1>Inscrire un collaborateur</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
@@ -14,8 +14,19 @@
         {{ form_row(registrationForm.roles) }}
         {{ form_row(registrationForm.Password) }}
         {{ form_row(registrationForm.Confirmation) }}
-        <button class="btn">Enregistrer</button>
+        <div class="row justify-content-around">
+            <div class="col-4">
+                <button class="btn btn-primary">Enregistrer</button>
+            </div>
+            <div class="col-4">
+                <a class="btn btn-dark" href="{{ path('collaborateur') }}">Retour</a> 
+            </div>
+       
+        </div>
+
+
     {{ form_end(registrationForm) }}
 
-    <a class="btn btn-dark" href="{{ path('collaborateur') }}">Retour</a>
+    </div>
+
 {% endblock %}

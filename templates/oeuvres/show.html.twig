@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Oeuvres{% endblock %}
+{% block title %}Les Oeuvres{% endblock %}
 
 {% block body %}
-    <h1>Oeuvres</h1>
+    <h1>Les Oeuvres</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>n°</th>
                 <td>{{ oeuvre.id }}</td>
             </tr>
             <tr>
-                <th>Titre</th>
+                <th>Titre de l'oeuvre</th>
                 <td>{{ oeuvre.titre }}</td>
             </tr>
             <tr>
-                <th>Path</th>
+                <th>Joindre</th>
                 <td>{{ oeuvre.path }}</td>
             </tr>
             <tr>
-                <th>Livre</th>
+                <th>Livré</th>
                 <td>{{ oeuvre.livre ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
@@ -28,23 +28,23 @@
                 <td>{{ oeuvre.emplacement }}</td>
             </tr>
             <tr>
-                <th>Description_fr</th>
+                <th>Description en français</th>
                 <td>{{ oeuvre.descriptionFr }}</td>
             </tr>
             <tr>
-                <th>Description_en</th>
+                <th>Description en anglais</th>
                 <td>{{ oeuvre.descriptionEn }}</td>
             </tr>
             <tr>
-                <th>Type</th>
+                <th>Type de l'oeuvre</th>
                 <td>{{ oeuvre.type }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('oeuvres_index') }}">back to list</a>
+    <a href="{{ path('oeuvres_index') }}">Retour vers la liste</a>
 
-    <a href="{{ path('oeuvres_edit', {'id': oeuvre.id}) }}">edit</a>
+    <a href="{{ path('oeuvres_edit', {'id': oeuvre.id}) }}">Modifier l'oeuvre</a>
 
     {{ include('oeuvres/_delete_form.html.twig') }}
 {% endblock %}

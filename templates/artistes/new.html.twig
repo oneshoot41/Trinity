@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Artistes{% endblock %}
+{% block title %}Ajout d'un nouvel artiste{% endblock %}
 
 {% block body %}
 
     {{ include('artistes/_form.html.twig') }}
 
-    <a class="btn btn-dark" href="{{ path('artistes_index') }}">Retour</a>
 {% endblock %}

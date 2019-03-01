@@ -1,5 +1,11 @@
 
-{{ form_start(form) }}
+<div class="container pt-4 mt-4 mb-4">
+    {{ form_start(form) }}
+
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+        <button class="btn  btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    {{ form_end(form) }}
+        
+    <a href="{{ path('expositions_index') }}">Retour vers la liste</a>
+
+</div>

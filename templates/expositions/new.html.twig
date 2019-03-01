@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Expositions{% endblock %}
+{% block title %}Ajouter une nouvelle exposition{% endblock %}
 
 {% block body %}
-    <h1>Create new Expositions</h1>
+    <h1>Créer une nouvelle exposition</h1>
 
     {{ include('expositions/_form.html.twig') }}
 
-    <a href="{{ path('expositions_index') }}">back to list</a>
 {% endblock %}

@@ -25,7 +25,6 @@ class ExpositionsType extends AbstractType
             ])
             ->add('date_debut')
             ->add('date_fin')
-            ->add('nb_vues')
             ->add('description_fr')
             ->add('description_en')
             ->add('oeuvres', EntityType::class, [
@@ -34,7 +33,7 @@ class ExpositionsType extends AbstractType
                 'multiple' => true,
                 'expanded' => true
             ])
-            ->add('ordre')
+            ->add('ordre', TextType::class, ['label' => 'Chemin d\'or'])
         ;
     }
 

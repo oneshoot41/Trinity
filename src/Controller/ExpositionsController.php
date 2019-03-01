@@ -97,13 +97,8 @@ class ExpositionsController extends AbstractController
 
         return $this->redirectToRoute('expositions_index');
     }
-<<<<<<< HEAD
-
-     /**
-=======
     
     /**
->>>>>>> 5ecc168b236b44f024a566425dd43aa4d7044cb0
      * @Route("/generate/{id}", name="expositions_generate", methods={"GET"})
      */
     public function generate(Expositions $exposition): Response
