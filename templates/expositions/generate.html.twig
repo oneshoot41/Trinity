@@ -3,19 +3,25 @@
 {% block title %}Expositions qr codes{% endblock %}
 
 {% block body %}
+{% include 'partials/_navbarGestion.html.twig' %}
+<div class="container pt-5">
 
-    <h2> {{exposition.nom}} </h2>
- 
-   {% for oeuvre in exposition.oeuvres %}
-        <div>
-            <img src="{{ asset('qr_codes/' ~ oeuvre.titre ~ oeuvre.id ~ '.png') }}"/>
-            
-            <p>{{ oeuvre.titre}}  
-                {% if oeuvre.artiste.nom is defined and oeuvre.artiste.nom is not empty %}
-                -  {{ oeuvre.artiste.nom }} 
-                {% endif %}
-            <p>
-
+    <div class="text-center text-warning script">
+        <h2 class="pb-5"> {{exposition.nom}} </h2>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('expositions_index') }}">Retour</a>
         </div>
+    </div>
+ 
+    <div class="row">
+   {% for oeuvre in exposition.oeuvres %}
+    <div class="col-md-3">
+        <div class="card text-center script">
+            <p class="card-title">{{ oeuvre.titre }}<p>
+            <img class="card-img" src="{{ asset('qr_codes/' ~ oeuvre.titre ~ oeuvre.id ~ '.png') }}"/>
+        </div>
+    </div>
     {% endfor %}
+    </div>
+</div>
 {% endblock %}

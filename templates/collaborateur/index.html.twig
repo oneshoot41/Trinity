@@ -7,6 +7,9 @@
     <div class="container pt-5">
 
         <h1 class="script text-center pb-5">Collaborateurs</h1>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('gestion') }}">Retour</a>
+        </div>
         <table class="mx-auto table table-bordered ">
             <thead>
                 <tr class="text-center">
@@ -22,9 +25,9 @@
             </thead>
             {% for collaborateur in collaborateurs %}
             <tr class="text-center">
-                <td>{{ collaborateur.nom }}</td>
-                <td>{{ collaborateur.prenom }}</td>
-                <td>{{ collaborateur.email }}</td>
+                <td>{{ collaborateur.nom|slice(0, 50) }}</td>
+                <td>{{ collaborateur.prenom|slice(0, 50) }}</td>
+                <td>{{ collaborateur.email|slice(0, 50) }}</td>
                 <td>{{ collaborateur.tel }}</td>
                 <td>{{ collaborateur.service }}</td>
                 {% if is_granted('ROLE_ADMIN') %}

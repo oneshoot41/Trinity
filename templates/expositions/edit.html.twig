@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Expositions{% endblock %}
+{% block title %}Modification{% endblock %}
 
 {% block body %}
 {% include 'partials/_navbarGestion.html.twig' %}
 
 <div class="container pt-5">
-    <h1 class="script text-warning text-center">Edit Expositions</h1>
+    <h1 class="script text-warning text-center">Modification</h1>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('expositions_index') }}">Retour</a>
+        </div>
 
 
     {{ include('expositions/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('expositions_index') }}">back to list</a>
-
-    {{ include('expositions/_delete_form.html.twig') }}
 </div>
 {% endblock %}

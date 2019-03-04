@@ -8,6 +8,7 @@ use App\Entity\Artistes;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,18 +24,29 @@ class ExpositionsType extends AbstractType
             ->add('nom', TextType::class, [
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('date_debut')
-            ->add('date_fin')
-            ->add('nb_vues')
-            ->add('description_fr')
-            ->add('description_en')
+            ->add('date_debut', DateTimeType::class, [
+                'attr' => ['class' => 'input-group']
+            ])
+            ->add('date_fin', DateTimeType::class, [
+                'attr' => ['class' => 'input-group']
+            ])
+            ->add('description_fr', TextareaType::class, [
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('description_en', TextareaType::class, [
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('ordre', TextType::class, [
+                'required' => false,
+                'attr' => ['maxlength' => '5',
+                'class' => 'form-control']
+            ])
             ->add('oeuvres', EntityType::class, [
                 'class' => Oeuvres::class,
                 'choice_label' => 'titre',
                 'multiple' => true,
                 'expanded' => true
             ])
-            ->add('ordre')
         ;
     }
 

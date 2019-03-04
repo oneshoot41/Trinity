@@ -11,32 +11,59 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class OeuvresType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre')
+            ->add('titre', TextType::class, [
+                'attr' => ['class' => 'form-control']
+            ])
             ->add('path', FileType::class)
-            ->add('livre')
-            ->add('emplacement')
-            ->add('description_fr')
-            ->add('description_en')
+            ->add('livre', CheckboxType::class)
+            ->add('description_fr', TextareaType::class, [
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('description_en', TextareaType::class, [
+                'attr' => ['class' => 'form-control']
+            ])
             ->add('type', ChoiceType::class, [
                 'choices'  => [
                     'Tableau' => 'Tableau',
                     'Musique' => 'Musique',
                     'Vidéo' => 'Vidéo'
-                ]]
+                ],
+                'attr' => ['class' => 'form-control']
+                ]
             )
             ->add('artiste', EntityType::class, [
                 'class' => Artistes::class,
                 'choice_label' => 'nom',
                 'multiple' => false,
-                'expanded' =>  false
+                'expanded' =>  false,
+                'attr' => ['class' => 'form-control']
             ])
+            ->add('emplacement', ChoiceType::class, [
+                'choices' => [
+                    'A' => 'A',
+                    'B' => 'B',
+                    'C' => 'C',
+                    'D' => 'D',
+                    'E' => 'E',
+                    'F' => 'F',
+                    'G' => 'G',
+                    'H' => 'H',
+                    'I' => 'I',
+                    'J' => 'J',
+                    'Pas encore défini' => 'aucun'
+                ],
+                'attr' => ['class' => 'form-control']
+                ]
+            )
             ;
     }
 

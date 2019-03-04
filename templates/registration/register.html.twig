@@ -3,8 +3,11 @@
 
 {% block body %}
 {% include 'partials/_navbarGestion.html.twig' %}
-    <h1>Register</h1>
-
+<div class="container pt-5">
+    <h1 class="text-center script text-warning">Ajouter un collaborateur</h1>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('collaborateur') }}">Retour</a>
+        </div>
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.nom) }}
@@ -14,8 +17,10 @@
         {{ form_row(registrationForm.roles) }}
         {{ form_row(registrationForm.Password) }}
         {{ form_row(registrationForm.Confirmation) }}
-        <button class="btn">Enregistrer</button>
+        <div class="text-center my-3">
+        <button class="btn btn-success">Enregistrer</button>
+        </div>
     {{ form_end(registrationForm) }}
 
-    <a class="btn btn-dark" href="{{ path('collaborateur') }}">Retour</a>
+</div>
 {% endblock %}

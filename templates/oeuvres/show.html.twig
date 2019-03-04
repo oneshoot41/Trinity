@@ -1,50 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Oeuvres{% endblock %}
+{% block title %}{{oeuvre.titre}}{% endblock %}
 
 {% block body %}
-    <h1>Oeuvres</h1>
+<body class="bg-dark">
+    
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ oeuvre.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ oeuvre.titre }}</td>
-            </tr>
-            <tr>
-                <th>Path</th>
-                <td>{{ oeuvre.path }}</td>
-            </tr>
-            <tr>
-                <th>Livre</th>
-                <td>{{ oeuvre.livre ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Emplacement</th>
-                <td>{{ oeuvre.emplacement }}</td>
-            </tr>
-            <tr>
-                <th>Description_fr</th>
-                <td>{{ oeuvre.descriptionFr }}</td>
-            </tr>
-            <tr>
-                <th>Description_en</th>
-                <td>{{ oeuvre.descriptionEn }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ oeuvre.type }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
+        <div class="text-center">
+            <h2 class="text-warning script">{{oeuvre.titre}}</h2>
+        </div>
+        
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-    <a href="{{ path('oeuvres_index') }}">back to list</a>
+    <div class="row">
+    {% if oeuvre.type == 'Tableau' %}
+        <div class="col-sm-12 p-3">
+                <div class="card">
+                    <img src="{{asset('uploads/media/')}}{{oeuvre.path}}" alt="Expositions" class="card-img-top">
+                    <div class="text-center mt-2 card-body">
+                        <p class="card-title text-dark">Réalisé par {{ oeuvre.artiste.prenom }} {{ oeuvre.artiste.nom }}</p>
+                        <p class="card-text text-dark">
+                            {{ oeuvre.descriptionFr }}
+                        </p>
+                    </div>
+                </div>
+        </div>
+    {% elseif oeuvre.type == 'Vidéo' %}
+        <div class="col-sm-12 p-3">
+                <div class="card">
+                    <video src="{{asset('uploads/media/')}}{{oeuvre.path}}" alt="Expositions" class="card-img-top" controls>
+                    <div class="text-center mt-2 card-body">
+                        <p class="card-title text-dark">Réalisé par {{ oeuvre.artiste.prenom }} {{ oeuvre.artiste.nom }}</p>
+                        <p class="card-text text-dark">
+                            {{ oeuvre.descriptionFr }}
+                        </p>
+                    </div>
+                </div>
+        </div>
+    {% elseif oeuvre.type == 'Musique' %}
+        <div class="col-sm-12 p-3">
+                <div class="card">
+                    <img src="{{asset('img/music.png')}}" alt="Musique" class="card-img-top">
+                        <div class="card-body">
+                            <div>
+                                <audio src="{{asset('uploads/media/')}}{{oeuvre.path}}" alt="Oeuvre" controls>
+                            </div>
+                    <div class="text-center mt-2 card-body">
+                        <p class="card-title text-dark">Réalisé par {{ oeuvre.artiste.prenom }} {{ oeuvre.artiste.nom }}</p>
+                        <p class="card-text text-dark">
+                            {{ oeuvre.descriptionFr }}
+                        </p>
+                    </div>
+                </div>
+        </div>
+    {% endif %}
 
-    <a href="{{ path('oeuvres_edit', {'id': oeuvre.id}) }}">edit</a>
-
-    {{ include('oeuvres/_delete_form.html.twig') }}
+    </div>
+</div>
+</body>
 {% endblock %}

@@ -7,6 +7,9 @@
 {% include 'partials/_navbarGestion.html.twig' %}
 <div class="container pt-5">
     <h1 class="text-center script pb-5">{{ exposition.nom }}</h1>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('expositions_index') }}">Retour</a>
+        </div>
     <div class="row">
         <div class="col-md-6 text-center py-5">
             <h3 class="script text-warning">Description Français</h3>
@@ -30,6 +33,10 @@
                     <div class="card">
                         <h1 class="card-title script text-center text-secondary">{{ o.titre }}</h1>
                         <img src="{{asset('uploads/media/')}}{{o.path}}" alt="oeuvre" class="card-img-top">
+                            <div class="card-text text-center text-uppercase">
+                                <p class="pt-2 m-0">Emplacement :</p>
+                                <h1>{{ o.emplacement }}</h1>
+                            </div>
                     </div>
                 </div>
             {% elseif o.type == 'Musique' %}
@@ -41,6 +48,10 @@
                             <div>
                                 <audio src="{{asset('uploads/media/')}}{{o.path}}" alt="oeuvre" controls>
                             </div>
+                                <div class="card-text text-center text-uppercase">
+                                    <p class="pt-2 m-0">Emplacement :</p>
+                                    <h1>{{ o.emplacement }}</h1>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -49,6 +60,10 @@
                     <div class="card">
                         <h1 class="card-title script text-center text-secondary">{{ o.titre }}</h1>
                         <video controls src="{{asset('uploads/media/')}}{{o.path}}" alt="oeuvre" class="card-img-top"></video>
+                            <div class="card-text text-center text-uppercase">
+                                <p class="pt-2 m-0">Emplacement :</p>
+                                <h1>{{ o.emplacement }}</h1>
+                            </div>
                     </div>
                 </div>
             {% endif %}

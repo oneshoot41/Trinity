@@ -4,7 +4,7 @@
 }
 
 nav {
-    font-size: 1.5vw;
+    font-size: 1vw;
 }
 
 #gestion {
@@ -30,8 +30,21 @@ nav {
     font-size: 1rem;
 }
 
-/* body { 
-    background-image: url(../img/rideau.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-}*/
+#title{
+    font-family: 'Kaushan Script', cursive;
+    color: rgb(189,16,59);
+}
+
+#logo_nav{
+    color: rgb(189,16,59);
+}
+
+#foot{
+    background-color: rgb(189,16,59);
+}
+
+@media only screen and (max-width: 768px) {
+    #carousel{
+      width: 100%;
+    }
+  }

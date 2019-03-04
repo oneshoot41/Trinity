@@ -13,13 +13,16 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'form-control']
+            ])
             ->add('Password', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -35,6 +38,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'attr' => ['class' => 'form-control']
             ])
             ->add('Confirmation', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -45,18 +49,22 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Please Confirm your password',
                     ]),
                 ],
+                'attr' => ['class' => 'form-control']
             ])
 
             ->add('nom', TextType::class, [
-                'mapped' => false
+                'mapped' => false,
+                'attr' => ['class' => 'form-control']
             ])
 
             ->add('prenom', TextType::class, [
-                'mapped' => false
+                'mapped' => false,
+                'attr' => ['class' => 'form-control']
             ])
 
             ->add('tel', TextType::class, [
-                'mapped' => false
+                'mapped' => false,
+                'attr' => ['class' => 'form-control']
             ])
 
             ->add('service', ChoiceType::class, [
@@ -72,7 +80,8 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Please Confirm your password',
                     ]),
-                ]    
+                    ],
+                    'attr' => ['class' => 'form-control']    
             ])
 
             ->add('roles', ChoiceType::class, [
@@ -81,7 +90,8 @@ class RegistrationFormType extends AbstractType
                     'Collaborateur' => 'ROLE_USER'
                 ],
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'attr' => ['class' => 'form-control']
             ])
         ;
     }

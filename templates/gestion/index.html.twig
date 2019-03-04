@@ -11,39 +11,47 @@
         </div>
         <div class="row" id="gestion">
             <div class="col-md-3 col-sm-12 p-3">
+            <a href="{{path('expositions_index')}}">
                 <div class="card">
                     <img src="{{ asset('img/expo.jpg') }}" alt="Expositions" class="card-img-top">
                     <div class="text-center mt-2">
                         <a href="{{path('expositions_index')}}" class="btn btn-block btn-outline-success">Expositions</a>
                     </div>
                 </div>
+            </a>
             </div>
 
             <div class="col-md-3 col-sm-12 p-3">
+                <a href="{{path('collaborateur')}}">
                 <div class="card">
                     <img src="{{ asset('img/employes.jpg') }}" alt="Collaborateurs" class="card-img-top">
                     <div class="text-center mt-2">
                         <a href="{{ path('collaborateur') }}" class="btn btn-block btn-outline-success">Collaborateurs</a>
                     </div>
                 </div>
+                </a>
             </div>
 
             <div class="col-md-3 col-sm-12 p-3">
+                <a href="{{path('oeuvres_index')}}">
                 <div class="card">
                     <img src="{{ asset('img/oeuvres.jpg') }}" alt="Oeuvres" class="card-img-top img-fluid">
                     <div class="text-center mt-2">
                         <a href="{{ path('oeuvres_index') }}" class="btn btn-block btn-outline-success">Oeuvres</a>
                     </div>
                 </div>
+                </a>
             </div>
 
             <div class="col-md-3 col-sm-12 p-3">
+            <a href="{{path('artistes_index')}}">
                 <div class="card">
                     <img src="{{ asset('img/artistes.jpg') }}" alt="Artistes" class="card-img-top">
                     <div class="text-center mt-2">
                         <a href="{{ path('artistes_index') }}" class="btn btn-block btn-outline-success">Artistes</a>
                     </div>
                 </div>
+            </a>
             </div>
         </div>
     </div>

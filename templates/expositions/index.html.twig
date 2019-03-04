@@ -7,7 +7,10 @@
 {% include 'partials/_navbarGestion.html.twig' %}
     <div class="container pt-5">
 
-        <h1 class="script text-center text-warning pb-5">Expositions</h1>
+        <h1 class="script text-center text-warning pb-2">Expositions</h1>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('gestion') }}">Retour</a>
+        </div>
         <table class="mx-auto table table-bordered ">
             <thead>
                 <tr class="text-center">
@@ -21,7 +24,7 @@
             </thead>
             {% for exposition in expositions %}
             <tr class="text-center">
-                <td>{{ exposition.nom }}</td>
+                <td>{{ exposition.nom|slice(0, 50) }}</td>
                 <td>{{ exposition.dateDebut ? exposition.dateDebut|date('d m Y') : '' }}</td>
                 <td>{{ exposition.dateFin ? exposition.dateFin|date('d m Y') : '' }}</td>
                 <td>{{ exposition.nbVues }}</td>

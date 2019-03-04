@@ -21,7 +21,7 @@ class ArtistesController extends AbstractController
     public function index(ArtistesRepository $artistesRepository): Response
     {
         return $this->render('artistes/index.html.twig', [
-            'artistes' => $artistesRepository->findAll(),
+            'artistes' => $artistesRepository->findBy([],['nom' => 'ASC']),
         ]);
     }
 

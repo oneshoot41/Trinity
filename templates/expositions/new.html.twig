@@ -3,9 +3,13 @@
 {% block title %}New Expositions{% endblock %}
 
 {% block body %}
-    <h1>Create new Expositions</h1>
-
+{% include 'partials/_navbarGestion.html.twig' %}
+<div class="container pt-5">
+    <h1 class="text-center script text-warning">Nouvelle Expo</h1>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('expositions_index') }}">Retour</a>
+        </div>
     {{ include('expositions/_form.html.twig') }}
 
-    <a href="{{ path('expositions_index') }}">back to list</a>
+</div>
 {% endblock %}

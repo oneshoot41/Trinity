@@ -3,9 +3,12 @@
 {% block title %}Edit Oeuvres{% endblock %}
 
 {% block body %}
-    <h1>Edit Oeuvres</h1>
-
+{% include 'partials/_navbarGestion.html.twig' %}
+<div class="container pt-5">
+        <h1 class="text-center script text-warning">Modifications</h1>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('oeuvres_index') }}">Retour</a>
+        </div>
     {{ include('oeuvres/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('oeuvres_index') }}">back to list</a>
+</div>
 {% endblock %}

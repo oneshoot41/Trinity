@@ -3,8 +3,14 @@
 {% block title %}New Artistes{% endblock %}
 
 {% block body %}
+{% include 'partials/_navbarGestion.html.twig' %}
+<div class="container pt-5">
+        <h1 class="text-center script text-warning">Ajouter un artiste</h1>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('artistes_index') }}">Retour</a>
+        </div>
 
     {{ include('artistes/_form.html.twig') }}
 
-    <a class="btn btn-dark" href="{{ path('artistes_index') }}">Retour</a>
+</div>
 {% endblock %}

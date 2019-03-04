@@ -3,9 +3,13 @@
 {% block title %}New Oeuvres{% endblock %}
 
 {% block body %}
-    <h1>Create new Oeuvres</h1>
-
+{% include 'partials/_navbarGestion.html.twig' %}
+<div class="container pt-5">
+    <h1 class="text-center script text-warning">Ajouter une oeuvre</h1>
+        <div class="text-center">
+            <a class="btn btn-dark text-center mb-3" href="{{ path('oeuvres_index') }}">Retour</a>
+        </div>
     {{ include('oeuvres/_form.html.twig') }}
 
-    <a href="{{ path('oeuvres_index') }}">back to list</a>
+</div>
 {% endblock %}
